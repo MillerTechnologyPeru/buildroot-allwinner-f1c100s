@@ -31,4 +31,5 @@ apt-get -q install -y \
     unzip \
     file \
     bison \
-    flex
+    flex \
+    swig
