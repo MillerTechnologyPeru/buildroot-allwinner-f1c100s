@@ -32,4 +32,5 @@ apt-get -q install -y \
     file \
     bison \
     flex \
-    swig
+    swig \
+    xxd
