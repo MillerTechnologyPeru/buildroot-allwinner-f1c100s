@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
     build:
-        name: Build Swift for Buildroot
+        name: Build Buildroot image
         strategy:
           matrix:
             config: ["widora_mangopi_r3"]
@@ -17,7 +17,7 @@ jobs:
           run: |
             export SRC_ROOT=$GITHUB_WORKSPACE
             export DEFCONFIG=${{ matrix.config }}_defconfig
-            export BUILDROOT_DIR=/workspaces/buildroot
+            export BUILDROOT_DIR=/tmp/buildroot
             export BUILDROOT_RELEASE=2022.08.1
             export DEBIAN_FRONTEND=noninteractive 
             export DEBCONF_NONINTERACTIVE_SEEN=true
@@ -28,5 +28,5 @@ jobs:
         - name: Archive Build artifacts
           uses: actions/upload-artifact@v3
           with:
-            name: rootfs-ext2-${{ matrix.config }}
-            path: /workspaces/buildroot/output/images/rootfs.ext2
+            name: build-${{ matrix.config }}
+            path: /tmp/buildroot/output/images
